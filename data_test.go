@@ -7,65 +7,65 @@ import (
 
 type testData struct {
 	t time.Time
-	r WeekDay
+	r time.Weekday
 }
 
 var allTestData = []testData{
 	{
 		t: time.Date(2018, time.November, 1, 0, 0, 0, 0, time.UTC),
-		r: Cht,
+		r: time.Thursday,
 	},
 	{
 		t: time.Date(2018, time.November, 2, 0, 0, 0, 0, time.UTC),
-		r: Pt,
+		r: time.Friday,
 	},
 	{
 		t: time.Date(2018, time.November, 3, 0, 0, 0, 0, time.UTC),
-		r: Sb,
+		r: time.Saturday,
 	},
 	{
 		t: time.Date(2018, time.November, 4, 0, 0, 0, 0, time.UTC),
-		r: Vs,
+		r: time.Sunday,
 	},
 	{
 		t: time.Date(2018, time.November, 5, 0, 0, 0, 0, time.UTC),
-		r: Pn,
+		r: time.Monday,
 	},
 	{
 		t: time.Date(2018, time.November, 6, 0, 0, 0, 0, time.UTC),
-		r: Vt,
+		r: time.Tuesday,
 	},
 	{
 		t: time.Date(2018, time.November, 7, 0, 0, 0, 0, time.UTC),
-		r: Sr,
+		r: time.Wednesday,
 	},
 	{
 		t: time.Date(2018, time.November, 8, 0, 0, 0, 0, time.UTC),
-		r: Cht,
+		r: time.Thursday,
 	},
 	{
 		t: time.Date(2018, time.November, 9, 0, 0, 0, 0, time.UTC),
-		r: Pt,
+		r: time.Friday,
 	},
 	{
 		t: time.Date(2018, time.November, 25, 0, 0, 0, 0, time.UTC),
-		r: Vs,
+		r: time.Sunday,
 	},
 	{
 		t: time.Date(2018, time.November, 26, 0, 0, 0, 0, time.UTC),
-		r: Pn,
+		r: time.Monday,
 	},
 	{
 		t: time.Date(2018, time.December, 12, 0, 0, 0, 0, time.UTC),
-		r: Sr,
+		r: time.Wednesday,
 	},
 	{
 		t: time.Date(2018, time.December, 11, 0, 0, 0, 0, time.UTC),
-		r: Vt,
+		r: time.Tuesday,
 	},
 	{
 		t: time.Date(2018, time.December, 9, 0, 0, 0, 0, time.UTC),
-		r: Vs,
+		r: time.Sunday,
 	},
 }
 

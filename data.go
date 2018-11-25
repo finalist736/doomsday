@@ -1,44 +1,9 @@
 package doomsday
 
 import (
-	"fmt"
+	"strconv"
 	"time"
 )
-
-type WeekDay int
-
-var (
-	Pn  WeekDay = 1
-	Vt  WeekDay = 2
-	Sr  WeekDay = 3
-	Cht WeekDay = 4
-	Pt  WeekDay = 5
-	Sb  WeekDay = 6
-	Vs  WeekDay = 7
-)
-
-func (d WeekDay) String() string {
-	switch d {
-	case Pn:
-		return "Понедельник"
-	case Vt:
-		return "Вторник"
-	case Sr:
-		return "Среда"
-	case Cht:
-		return "Четверг"
-	case Pt:
-		return "Пятница"
-	case Sb:
-		return "Суббота"
-	case Vs:
-		return "Воскресенье"
-	default:
-		return "default"
-	}
-}
-
-var doomsday2018 = Sr
 
 type doomsdayDate struct {
 	d int
@@ -48,11 +13,14 @@ type doomsdayDate struct {
 var knownDoomDays []doomsdayDate
 
 func init() {
-	knownDoomDays = make([]doomsdayDate, 0)
+
+	//ponedelnik := time.Monday
+
+	knownDoomDays = make([]doomsdayDate, 0, 13)
 
 	dd := doomsdayDate{d: 4, m: 4}
-
 	knownDoomDays = append(knownDoomDays, dd)
+
 	dd.d = 6
 	dd.m = 6
 	knownDoomDays = append(knownDoomDays, dd)
@@ -101,16 +69,16 @@ func init() {
 	dd.m = 3
 	knownDoomDays = append(knownDoomDays, dd)
 
-	//fmt.Printf("%v\n\n", knownDoomDays)
+	//fmt.Printf("init data: %v\n\n", knownDoomDays)
 }
 
-func Get(d time.Time) WeekDay {
-	fmt.Printf("%v\n", d)
+func Get(d time.Time) time.Weekday {
+	//fmt.Printf("%v\n", d)
 
 	var min, tmp time.Duration
 	var t time.Time
 	min = time.Hour * 24 * 365
-	var closestDoomDay doomsdayDate
+	//var closestDoomDay doomsdayDate
 	var tmin time.Time
 	for _, v := range knownDoomDays {
 		t = time.Date(d.Year(), time.Month(v.m), v.d, 0, 0, 0, 0, time.UTC)
@@ -120,27 +88,33 @@ func Get(d time.Time) WeekDay {
 		}
 		if min > tmp {
 			min = tmp
-			closestDoomDay = v
+			//closestDoomDay = v
 			tmin = t
 		}
 	}
 	sb := d.Sub(tmin)
-	fmt.Printf("day1: %+v; duration: %v; %v\n",
-		closestDoomDay, min, tmin)
+	//fmt.Printf("day1: %+v; duration: %v; %v\n",
+	//	closestDoomDay, min, tmin)
 
 	i := int(min.Hours()/24) % 7
-	fmt.Printf("day2: %v\n", i)
+	//fmt.Printf("day2: %v\n", i)
+
+	doomsdayInYear, exists := doomDaysYears[d.Year()]
+	if !exists {
+		panic("no data for this year = " +
+			strconv.FormatInt(int64(d.Year()), 10))
+	}
 
 	if sb > 0 {
-		i = int(doomsday2018) + i
+		i = int(doomsdayInYear) + i
 	} else {
-		i = int(doomsday2018) - i
+		i = int(doomsdayInYear) - i
 	}
 	if i < 0 {
 		i = 7 - (i * -1)
-	} else if i == 0 {
-		i = 7
+	} else if i == 7 {
+		i = 0
 	}
-	fmt.Printf("day3: %v\n", i)
-	return WeekDay(i)
+	//fmt.Printf("day3: %v\n", i)
+	return time.Weekday(i)
 }
