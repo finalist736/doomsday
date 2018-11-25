@@ -47,6 +47,26 @@ var allTestData = []testData{
 		t: time.Date(2018, time.November, 9, 0, 0, 0, 0, time.UTC),
 		r: Pt,
 	},
+	{
+		t: time.Date(2018, time.November, 25, 0, 0, 0, 0, time.UTC),
+		r: Vs,
+	},
+	{
+		t: time.Date(2018, time.November, 26, 0, 0, 0, 0, time.UTC),
+		r: Pn,
+	},
+	{
+		t: time.Date(2018, time.December, 12, 0, 0, 0, 0, time.UTC),
+		r: Sr,
+	},
+	{
+		t: time.Date(2018, time.December, 11, 0, 0, 0, 0, time.UTC),
+		r: Vt,
+	},
+	{
+		t: time.Date(2018, time.December, 9, 0, 0, 0, 0, time.UTC),
+		r: Vs,
+	},
 }
 
 func TestGet(t *testing.T) {
